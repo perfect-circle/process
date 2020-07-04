@@ -1,6 +1,6 @@
 # Arch Linux 安装教程
 
-## 准备工作
+## [准备工作](准备工作)
 ### 官方文档    <https://wiki.archlinux.org/index.php/lnstallation_guide>
 ### 下载Arch Linux    <https://www.archlinux.org/download/>
 ### 下载U盘制作工具      <http://rufus.ie/>
