@@ -15,7 +15,7 @@ sudo wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
 ## 下载epel repo源
 ```shell
-sudo wegt -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 ```
 
 ## 清理缓存
