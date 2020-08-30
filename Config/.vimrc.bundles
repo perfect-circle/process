@@ -22,8 +22,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle "Lokaltog/vim-powerline"
 " 主题风格
 Bundle "altercation/vim-colors-solarized"
-" python自动补全
-Bundle "python-mode/python-mode"
 " 括号匹配高亮
 Bundle 'kien/rainbow_parentheses.vim'
 " 可视化缩进

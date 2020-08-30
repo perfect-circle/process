@@ -9,14 +9,49 @@ if filereadable(expand("~/.vimrc.bundles"))
 endif
 
 call plug#begin('~/.vim/plugged')
-
-" 目录数
-Plug 'preservim/nerdtree'
-" 代码块
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
+"coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+"coc.vim
+let g:coc_global_extensions = [
+	\ 'coc-json',
+	\ 'coc-vimlsp',
+	\ 'coc-marketplace']
+
+set hidden	"把为保存的放在缓存区
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"跳转到被调用的函数
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+"查找错误
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+"H 获得光标下的文档
+nnoremap <silent> H :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-e>"
@@ -179,14 +214,3 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
- 
-" pythom-mode
-let g:pymode = 1
-let g:pymode_options = 1
-let g:pymode_indent = 1
-let g:pymode_folding = 0
-let g:pymode_motion = 1
-let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
