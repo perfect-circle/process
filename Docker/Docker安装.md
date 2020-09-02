@@ -13,8 +13,10 @@ Docker安装
 
 ## 镜像加速
 
-1. 登录阿里云，侧边栏的容器镜像服务，镜像加速器。
-
+在/etc/docker/daemon.json中加入镜像源
+{
+	"registry-mirrors":["https://docker.mirrors.ustc.edu.cn"]
+}
 ## Hello World流程
 ![Hello World](image/09_2_2.png) 
 
