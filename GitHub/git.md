@@ -1,8 +1,7 @@
 # Git基本操作
 
 ## 一、Git仓库的三大区域
-![Git三大分区](image/90_02_1.png) 
-
+![git三大区域](image/09_2_1.png) 
 
 所有Git命令都以git开头
 
