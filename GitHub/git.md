@@ -1,7 +1,9 @@
 # Git基本操作
 
 ## 一、Git仓库的三大区域
-![Git三大分区](https://doc.shiyanlou.com/document-uid310176labid9805timestamp1548755776759.png/wm) 
+![Git三大分区](image/90_02_1.png) 
+
+
 所有Git命令都以git开头
 
 ## 二、一次完整的修改、提交、推送操作
@@ -26,7 +28,7 @@ git push		# 提交
 git branch -avv		# 查看全部分支信息
 ```
 
-![分支查询](https://doc.shiyanlou.com/document-uid310176labid9805timestamp1548755963010.png/wm)
+![分支查询](image/09_2_3.png)
 
 第一行，开头的星号表示当前所在分支，绿色的 master 是分支名，之所以是绿色，也是因为它是当前所在分支。后面第二项是版本号，第三项中括号里面蓝色的字，表示此分支跟踪的远程分支的名字，当然啦，这也是克隆远程仓库到本地时的默认设置 -- 创建 master 分支并自动跟踪远程同名分支；冒号后面黑色文字表示本地分支领先其跟踪的远程分支一个提交。最后一项是提交时填写的备注信息。
 
@@ -37,14 +39,14 @@ git branch -avv		# 查看全部分支信息
 ## 三、版本回退
 ```shell
 git reset --soft HEAD^^	# 撤销前两次提交，返回两次提交提交前的版本--soft软退回,修改之后再提交
-git push -f		# 强制提交，处理分支在提交版本上有了冲突
+git push -f		# 强制提交，处理分支在提交版本上有了冲突，一个文件回退，一个文件提交。就会在提交版本上有冲突。
 ```
 
 ## 四、回退到固定版本
 ```shell
 git reflog	# 查询本地仓库的所有版本变化
 ```
-![git reflog](https://doc.shiyanlou.com/document-uid310176labid9805timestamp1548756307795.png/wm) 
+![git reflog](image/09_2_2.png) 
 
 ```shell
 git reset --hard HEAD@{2}	# 返回固定版本
