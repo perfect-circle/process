@@ -1,25 +1,31 @@
-set nocompatible              " required
-filetype off                  " required
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
- 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
-call plug#begin('~/.vim/plugged')
-"coc
+set nocompatible	"required
+filetype off		" required 
+call plug#begin('~/.vim/plugged') 
+" Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" 代码注释
+Plug 'preservim/nerdcommenter' 
+
+" NERDTree
+Plug 'preservim/nerdtree'
+
+" airline 
+Plug 'vim-airline/vim-airline'
+
+" Markdown
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+
+" 可视化缩进
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
-"coc.vim
-let g:coc_global_extensions = [
-	\ 'coc-json',
-	\ 'coc-vimlsp',
-	\ 'coc-marketplace']
+" coc
 
-set hidden	"把为保存的放在缓存区
+let g:coc_global_extensions = []
+
+set hidden
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -53,13 +59,8 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-e>"
-let g:UltiSnipsJumpBackwardTrigger="<c-d>"
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/vim/Ultisnips/', 'UltiSnips']
-
 " vim基本设置
+set number	"显示行号
 set cursorline "突出显示当前行
 set incsearch	"打开实时查找高亮模式
 set pastetoggle=<C-s>
@@ -76,19 +77,13 @@ syntax enable    "语法高亮
 set clipboard=unnamed
 set foldmethod=indent
 set background=light
-colorscheme solarized
 map <C-m> :%s///gn<CR>	"查看当前模式匹配个数
-map <C-c> :IndentGuidesToggle<CR>	" 缩进可视化
+map <C-c> :IndentGuidesToggle<CR>   " 可视化缩进
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-colorscheme delek
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-
-" 代码折叠
-let g:SimpylFold_docstring_preview=1
 
 " markdown设置
 
@@ -130,7 +125,6 @@ endfunc
 
 let python_highlight_all=1
 
-
 " nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -152,65 +146,20 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
-" tagbar标签导航
-nmap <Leader>t :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags'
-let g:tagbar_width=30
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
-let g:jedi#auto_initialization = 1
- 
-" 主题 solarized
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
+" 自动注释
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDAltDelims_java = 1
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
 
-" 配色方案
-syntax enable
-set background=dark
-colorscheme solarized
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
 
-" ctrlp文件搜索
-" 打开ctrlp搜索
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_cmd = 'CtrlP'
-
-" 相当于mru功能，show recently opened files
-map <leader>fp :CtrlPMRU<CR>
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    \ }
-"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
- 
-" vim-powerline美化状态
-" let g:Powerline_symbols = 'fancy'
-let g:Powerline_symbols = 'unicode'
- 
-" 括号匹配高亮
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 40
-let g:rbpt_loadcmd_toggle = 0
+" Markdown实时预览
