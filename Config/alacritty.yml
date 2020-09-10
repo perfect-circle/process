@@ -1,0 +1,19 @@
+Values for `decorations`:
+    - full: Borders and title bar
+    - none: Neither borders nor title bar
+
+font:
+  size: 15
+
+  normal:
+    family: Noto Sans Mono
+    style: Regular
+    
+  bold: 
+    family: Noto Sans Mono
+
+  italic:
+    family: Noto Sans Mono
+  
+
+background_opacity: 0.8
